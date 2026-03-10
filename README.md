@@ -1,16 +1,82 @@
-# React + Vite
+# Mon Restaurant - Restaurant Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive restaurant website built with React, Vite, and TailwindCSS. Features a dark theme, interactive product filtering, and smooth animations.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Dark Theme**: Custom dark theme using TailwindCSS @theme directive with oklch colors
+- **Product Filtering**: Filter products by category, price range, and keywords
+- **Responsive Design**: Mobile-first design with TailwindCSS
+- **Animations**: Smooth transitions and entrance animations using Motion/React
+- **Mock Data**: Comprehensive mock data for products, categories, and keywords
+- **Components**:
+  - Header with full-screen background image and dark overlay
+  - Navbar with navigation links
+  - Sidebar with interactive filters
+  - ProductCard with hover effects and keyword badges
+  - Footer with copyright information
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **Frontend**: React 18
+- **Build Tool**: Vite
+- **Styling**: TailwindCSS with custom theme
+- **Fonts**: Google Fonts (Playfair Display)
+- **Icons**: Lucide React
+- **Animations**: Motion/React
+- **Linting**: ESLint
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository:
+
+   ```
+   git clone <repository-url>
+   cd vite-project
+   ```
+
+2. Install dependencies:
+
+   ```
+   npm install
+   ```
+
+3. Start the development server:
+
+   ```
+   npm run dev
+   ```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Header.jsx          # Full-screen header with background image
+│   ├── Navbar.jsx          # Navigation bar
+│   ├── Footer.jsx          # Footer component
+│   ├── Sidebar.jsx         # Filter sidebar with categories, price, keywords
+│   ├── ProductCard.jsx     # Product display card with animations
+│   └── KeywordBadge.jsx    # Reusable keyword badge component
+├── mocks/
+│   ├── products.jsx        # Product mock data
+│   ├── categories.jsx      # Category mock data
+│   └── keywords.jsx        # Keyword mock data
+├── pages/
+│   └── home.jsx            # Main home page with filtering logic
+├── globals.css             # Global styles, theme variables, font imports
+└── main.jsx               # App entry point
+```
+
+## Usage
+
+- Browse products by category (Pizza, Burger, Pasta, etc.)
+- Filter by price range using the slider
+- Select keywords to filter products by ingredients or features
+- View product details with images and badges
+
+## Contributing
+
+Feel free to submit issues and pull requests.
