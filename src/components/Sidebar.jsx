@@ -1,41 +1,21 @@
 import { cn } from "../lib/utils";
 import { KeywordBadge } from "./KeywordBadge";
+import { useProductFilters } from "../hooks/useProductFilters";
+import CategoriesMocks from "../mocks/categories";
+import KeywordsMocks from "../mocks/keywords";
 
-export const Sidebar = ({
-  categoriesList,
-  selectedCategory,
-  setSelectedCategory,
-  priceRange,
-  setPriceRange,
-  keywordsList,
-  keyword,
-  setKeyword,
-}) => {
+export const Sidebar = () => {
   return (
     <div className="space-y-4 max-w-70 p-2 rounded-md">
-      <SidebarCategories
-        categoriesList={categoriesList}
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
-      <SidebarPriceFilter
-        priceRange={priceRange}
-        setPriceRange={setPriceRange}
-      />
-      <SidebarKeywordFilter
-        keywordsList={keywordsList}
-        keyword={keyword}
-        setKeyword={setKeyword}
-      />
+      <SidebarCategories />
+      <SidebarPriceFilter />
+      <SidebarKeywordFilter />
     </div>
   );
 };
 
-const SidebarCategories = ({
-  categoriesList,
-  selectedCategory,
-  setSelectedCategory,
-}) => {
+const SidebarCategories = () => {
+  const { selectedCategory, setSelectedCategory } = useProductFilters();
   const handleCategoryClick = (categoryId) => {
     setSelectedCategory(categoryId);
   };
@@ -43,7 +23,7 @@ const SidebarCategories = ({
     <div className="shadow-xs rounded-md transition-shadow duration-300 shadow-primary">
       <div className="p-2 bg-primary rounded-t-md">Categories</div>
       <div className="flex flex-col">
-        {categoriesList?.map((category) => (
+        {CategoriesMocks?.map((category) => (
           <button
             key={category.id}
             className={cn(
@@ -61,7 +41,8 @@ const SidebarCategories = ({
   );
 };
 
-const SidebarPriceFilter = ({ priceRange, setPriceRange }) => {
+const SidebarPriceFilter = () => {
+  const { priceRange, setPriceRange } = useProductFilters();
   return (
     <div className="p-2 shadow-xs shadow-primary rounded-md">
       <h3>Prix</h3>
@@ -78,16 +59,12 @@ const SidebarPriceFilter = ({ priceRange, setPriceRange }) => {
   );
 };
 
-const SidebarKeywordFilter = ({ keywordsList, keyword, setKeyword }) => {
+const SidebarKeywordFilter = () => {
+  const { selectedKeywords, setSelectedKeywords } = useProductFilters();
   return (
     <div className="p-2 shadow-xs shadow-primary  rounded-md flex flex-wrap gap-2 justify-between">
-      {keywordsList?.map((k) => (
-        <KeywordBadge
-          key={k.id}
-          keyword={k.name}
-          active={k.id === keyword}
-          onClick={() => setKeyword(k.id)}
-        />
+      {KeywordsMocks?.map((k) => (
+        <KeywordBadge key={k.id} id={k.id} keyword={k.name} />
       ))}
     </div>
   );

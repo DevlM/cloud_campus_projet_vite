@@ -1,8 +1,15 @@
+import { Trash } from "lucide-react";
+import { useCheckout } from "../hooks/useCheckout";
 import KeywordsMocks from "../mocks/keywords";
 import { KeywordBadge } from "./KeywordBadge";
 import { motion as Motion } from "motion/react";
 
 export const ProductCard = ({ product, index }) => {
+  const { openCheckoutAddProductModal, checkoutProducts } = useCheckout();
+  const handleAddToCart = () => {
+    openCheckoutAddProductModal(product);
+  };
+  const isInCart = checkoutProducts.some((p) => p.id === product.id);
   return (
     <Motion.div
       initial={{ opacity: 0, translateY: 0, translateX: 30 }}
@@ -25,13 +32,33 @@ export const ProductCard = ({ product, index }) => {
         {product.keywordIds?.map((keywordId) => (
           <KeywordBadge
             key={keywordId}
+            id={keywordId}
             keyword={KeywordsMocks.find((k) => k.id === keywordId)?.name}
           />
         ))}
       </div>
-      <button className="bg-primary hover:bg-primary/80 cursor-pointer mt-auto text-white px-4 py-1 rounded-md">
-        Ajouter au panier
-      </button>
+      <div className="flex gap-2 mt-auto">
+        {isInCart ? (
+          <>
+            <button
+              onClick={handleAddToCart}
+              className="flex-1 bg-primary hover:bg-primary/80 cursor-pointer text-white px-4 py-1 rounded-md"
+            >
+              Modifier
+            </button>
+            <button className="bg-destructive hover:bg-destructive/80 cursor-pointer text-white px-4 py-1 rounded-md">
+              <Trash />
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={handleAddToCart}
+            className="bg-primary w-full hover:bg-primary/80 cursor-pointer text-white px-4 py-1 rounded-md"
+          >
+            Ajouter au panier
+          </button>
+        )}
+      </div>
     </Motion.div>
   );
 };

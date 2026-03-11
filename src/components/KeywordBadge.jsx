@@ -1,13 +1,19 @@
 import { cn } from "../lib/utils";
+import { useProductFilters } from "../hooks/useProductFilters";
 
-export const KeywordBadge = ({ keyword, active, onClick }) => {
+export const KeywordBadge = ({ id, keyword }) => {
+  const { handleKeywordClick, keyworkIsActive } = useProductFilters();
+  const handleClick = () => {
+    handleKeywordClick(id);
+  };
+  const isActive = keyworkIsActive(id);
   return (
     <div
       className={cn(
         "px-2 py-1 text-xs cursor-pointer hover:bg-primary/50 border rounded-md border-primary/30",
-        active ? "bg-primary/50" : "",
+        isActive ? "bg-primary/50" : "",
       )}
-      onClick={onClick}
+      onClick={handleClick}
     >
       {keyword}
     </div>
